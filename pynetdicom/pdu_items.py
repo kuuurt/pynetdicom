@@ -1384,7 +1384,6 @@ class AbstractSyntaxSubItem(PDUItem):
             value = UID(value)
         elif isinstance(value, bytes):
             try:
-                raise Exception
                 value = UID(value.decode('ascii'))
             except Exception:
                 encoding_list = [
