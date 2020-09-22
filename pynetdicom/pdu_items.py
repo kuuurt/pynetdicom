@@ -1386,35 +1386,9 @@ class AbstractSyntaxSubItem(PDUItem):
             try:
                 value = UID(value.decode('ascii'))
             except Exception:
-                encoding_list = [
-                    'utf_8',
-                    'utf_16',
-                    'utf_32',
-                    'cp037',
-                    'cp273',
-                    'cp437',
-                    'cp500',
-                    'cp850',
-                    'cp858',
-                    'cp1140',
-                    'cp1250',
-                    'cp1252',
-                    'latin_1',
-                    'iso8859_15',
-                ]
-                try:
-                    LOGGER.debug("Raw bytes: {}".format(value))
-                except Exception:
-                    pass
-
-                for enc in encoding_list:
-                    try:
-                        value = UID(value.decode(enc))
-                        LOGGER.debug("enc: {} yields: '{}'"
-                                     .format(enc, value))
-                    except Exception:
-                        LOGGER.debug("enc: {} failed".format(enc))
-
+                value = UID(value.decode('utf_8'))
+                LOGGER.debug("enc: utf_8, yields: '{}'"
+                             .format(value))
         elif value is None:
             pass
         else:
